@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  width: 80vh;
+  border: 2px solid red;
+  align-items: center;
+}
+
+.display {
+  background-color: black;
+  height: 20vh;
+  width: 79vh;
+  color: aliceblue;
+}
+
+.grid-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+button {
+  height: 80px;
+  width: 80px;
+}
+
