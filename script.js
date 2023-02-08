@@ -83,26 +83,29 @@ function clickOperator(e) {
 
 
 function clickEqual() {
-  if(!firstOperand) {
-    firstOperand = tempNumber;
-    tempNumber = '';
-    selectedOperator = e.target.innerHTML;
-    console.log('Primo operando: ' + firstOperand);
-    console.log('Operatore scelto: '+ selectedOperator);
-  } else {
-    secondOperand = tempNumber
-    tempNumber = ''
-    console.log('Secondo operando: ' + secondOperand);
+  if(firstOperand && selectedOperator) {
+    if(!firstOperand) {
+      firstOperand = tempNumber;
+      tempNumber = '';
+      selectedOperator = e.target.innerHTML;
+      console.log('Primo operando: ' + firstOperand);
+      console.log('Operatore scelto: '+ selectedOperator);
+    } else {
+      secondOperand = tempNumber
+      tempNumber = ''
+      console.log('Secondo operando: ' + secondOperand);
+    }
+  
+  
+    console.log(firstOperand, secondOperand, selectedOperator);
+    if(operate(firstOperand,secondOperand, selectedOperator)) {
+      console.log('Risultato: ' + operate(firstOperand, secondOperand, selectedOperator));
+      tempNumber = operate(firstOperand, secondOperand, selectedOperator);
+      firstOperand = ''
+      secondOperand = '';
+      selectedOperator = '';
+    }
   }
-
-
-  console.log(firstOperand, secondOperand, selectedOperator);
-  if(operate(firstOperand,secondOperand, selectedOperator)) {
-    console.log('Risultato: ' + operate(firstOperand, secondOperand, selectedOperator));
-    tempNumber = operate(firstOperand, secondOperand, selectedOperator);
-    firstOperand = ''
-    secondOperand = '';
-    selectedOperator = '';
-  }
+  
   
 }
