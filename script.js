@@ -4,8 +4,6 @@ let selectedOperator = ''
 let tempNumber = ''
 
 
-
-
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
   number.addEventListener('click', clickButton);
@@ -65,7 +63,6 @@ function operate(a, b, operator) {
 
 function clickButton(e) {
   tempNumber += e.target.innerHTML;
-  console.log('Stai premendo il numero: '+ tempNumber);
   lowerDisplay.innerHTML = `${tempNumber}`
 }
 
@@ -75,20 +72,15 @@ function clickOperator(e) {
     firstOperand = tempNumber;
     tempNumber = '';
     selectedOperator = e.target.innerHTML; 
-    console.log('Primo operando: ' + firstOperand);
-    console.log('Operatore scelto: '+ selectedOperator);
   } else {
     secondOperand = tempNumber
     if (secondOperand == '') {
       selectedOperator = e.target.innerHTML;
     }
     tempNumber = ''    
-    console.log('Secondo operando: ' + secondOperand);
   }
-  console.log(firstOperand, secondOperand, selectedOperator);
   upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
   if(operate(firstOperand,secondOperand, selectedOperator)) {
-    console.log('Risultato: ' + operate(firstOperand, secondOperand, selectedOperator));
     lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
     firstOperand = operate(firstOperand, secondOperand, selectedOperator);
     secondOperand = '';
@@ -105,18 +97,13 @@ function clickEqual() {
       firstOperand = tempNumber;
       tempNumber = '';
       selectedOperator = e.target.innerHTML;
-      console.log('Primo operando: ' + firstOperand);
-      console.log('Operatore scelto: '+ selectedOperator);
     } else {
       secondOperand = tempNumber
       tempNumber = ''
-      console.log('Secondo operando: ' + secondOperand);
     }
   
     upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
-    console.log(firstOperand, secondOperand, selectedOperator);
     if(operate(firstOperand,secondOperand, selectedOperator)) {
-      console.log('Risultato: ' + operate(firstOperand, secondOperand, selectedOperator));
       lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
       tempNumber = operate(firstOperand, secondOperand, selectedOperator);
       firstOperand = ''
