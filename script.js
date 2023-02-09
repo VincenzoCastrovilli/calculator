@@ -16,7 +16,11 @@ operators.forEach((op) => {
 })
 
 const equalButton = document.querySelector('.equal');
-equalButton.addEventListener('click', clickEqual)
+equalButton.addEventListener('click', clickEqual);
+
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', clickClear)
+
 
 
 function add(a, b) {
@@ -69,6 +73,9 @@ function clickOperator(e) {
     console.log('Operatore scelto: '+ selectedOperator);
   } else {
     secondOperand = tempNumber
+    if (secondOperand == '') {
+      selectedOperator = e.target.innerHTML;
+    }
     tempNumber = ''
     console.log('Secondo operando: ' + secondOperand);
   }
@@ -106,6 +113,11 @@ function clickEqual() {
       selectedOperator = '';
     }
   }
-  
-  
+}
+
+function clickClear() {
+  firstOperand = ''
+  secondOperand = ''
+  tempNumber = ''
+  selectedOperator = ''
 }
