@@ -1,7 +1,8 @@
-let firstOperand = '';
-let secondOperand = '';
-let selectedOperator = '';
-let tempNumber = '';
+let firstOperand = ''
+let secondOperand = ''
+let selectedOperator = ''
+let tempNumber = ''
+
 
 
 
@@ -20,6 +21,9 @@ equalButton.addEventListener('click', clickEqual);
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', clickClear)
+
+const upperDisplay = document.querySelector('#upper');
+const lowerDisplay = document.querySelector('#lower')
 
 
 
@@ -62,13 +66,15 @@ function operate(a, b, operator) {
 function clickButton(e) {
   tempNumber += e.target.innerHTML;
   console.log('Stai premendo il numero: '+ tempNumber);
+  lowerDisplay.innerHTML = `${tempNumber}`
 }
 
 function clickOperator(e) {
+  lowerDisplay.innerHTML = ''
   if(!firstOperand) {
     firstOperand = tempNumber;
     tempNumber = '';
-    selectedOperator = e.target.innerHTML;
+    selectedOperator = e.target.innerHTML; 
     console.log('Primo operando: ' + firstOperand);
     console.log('Operatore scelto: '+ selectedOperator);
   } else {
@@ -76,15 +82,19 @@ function clickOperator(e) {
     if (secondOperand == '') {
       selectedOperator = e.target.innerHTML;
     }
-    tempNumber = ''
+    tempNumber = ''    
     console.log('Secondo operando: ' + secondOperand);
   }
   console.log(firstOperand, secondOperand, selectedOperator);
+  upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
   if(operate(firstOperand,secondOperand, selectedOperator)) {
     console.log('Risultato: ' + operate(firstOperand, secondOperand, selectedOperator));
+    lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
     firstOperand = operate(firstOperand, secondOperand, selectedOperator);
     secondOperand = '';
     selectedOperator = e.target.innerHTML;
+    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
+    lowerDisplay.innerHTML = ''
   }
 }
 
@@ -103,10 +113,11 @@ function clickEqual() {
       console.log('Secondo operando: ' + secondOperand);
     }
   
-  
+    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
     console.log(firstOperand, secondOperand, selectedOperator);
     if(operate(firstOperand,secondOperand, selectedOperator)) {
       console.log('Risultato: ' + operate(firstOperand, secondOperand, selectedOperator));
+      lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
       tempNumber = operate(firstOperand, secondOperand, selectedOperator);
       firstOperand = ''
       secondOperand = '';
@@ -120,4 +131,7 @@ function clickClear() {
   secondOperand = ''
   tempNumber = ''
   selectedOperator = ''
+  upperDisplay.innerHTML = ''
+  lowerDisplay.innerHTML = ''
 }
+

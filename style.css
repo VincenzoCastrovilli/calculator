@@ -20,6 +20,14 @@ body {
   color: aliceblue;
 }
 
+#upper {
+  height: 10vh;
+}
+
+#lower {
+  height: 10vh;
+}
+
 .grid-buttons {
   display: flex;
   flex-wrap: wrap;
