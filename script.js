@@ -42,8 +42,8 @@ function divide(a, b) {
 }
 
 function operate(a, b, operator) {
-  let f = parseInt(a)
-  let s = parseInt(b)
+  let f = parseFloat(a)
+  let s = parseFloat(b)
   if(operator == '+') {
     return add(f, s);
   }
@@ -52,7 +52,7 @@ function operate(a, b, operator) {
     return subtract(f, s);
   }
 
-  if(operator === '*') {
+  if(operator === 'x') {
      return multiply(f, s);
   }
 
@@ -80,7 +80,7 @@ function clickOperator(e) {
     tempNumber = ''    
   }
   upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
-  if(operate(firstOperand,secondOperand, selectedOperator)) {
+  if(!isNaN(operate(firstOperand,secondOperand, selectedOperator)) ) {
     lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
     firstOperand = operate(firstOperand, secondOperand, selectedOperator);
     secondOperand = '';
@@ -92,7 +92,7 @@ function clickOperator(e) {
 
 
 function clickEqual() {
-  if(firstOperand && selectedOperator) {
+  if((firstOperand || firstOperand == '0') && selectedOperator) {
     if(!firstOperand) {
       firstOperand = tempNumber;
       tempNumber = '';
@@ -102,8 +102,8 @@ function clickEqual() {
       tempNumber = ''
     }
   
-    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
-    if(operate(firstOperand,secondOperand, selectedOperator)) {
+    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand} =`
+    if(!isNaN(operate(firstOperand,secondOperand, selectedOperator))) {
       lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
       tempNumber = operate(firstOperand, secondOperand, selectedOperator);
       firstOperand = ''
