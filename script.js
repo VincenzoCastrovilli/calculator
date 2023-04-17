@@ -23,19 +23,19 @@ const upperDisplay = document.querySelector('#upper');
 const lowerDisplay = document.querySelector('#lower');
 
 function add(a, b) {
-  return (a + b);
+  return a + b;
 }
 
 function subtract(a, b) {
-  return (a - b);
+  return a - b;
 }
 
 function multiply(a, b) {
-  return (a * b);
+  return a * b;
 }
 
 function divide(a, b) {
-  return (a / b);
+  return a / b;
 }
 
 function operate(a, b, operator) {
@@ -78,7 +78,11 @@ function clickOperator(e) {
   }
   upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`;
   if (!isNaN(operate(firstOperand, secondOperand, selectedOperator))) {
-    lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`;
+    lowerDisplay.innerHTML = `${operate(
+      firstOperand,
+      secondOperand,
+      selectedOperator
+    )}`;
     firstOperand = operate(firstOperand, secondOperand, selectedOperator);
     secondOperand = '';
     selectedOperator = e.target.innerHTML;
@@ -100,7 +104,11 @@ function clickEqual() {
 
     upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand} =`;
     if (!isNaN(operate(firstOperand, secondOperand, selectedOperator))) {
-      lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`;
+      lowerDisplay.innerHTML = `${operate(
+        firstOperand,
+        secondOperand,
+        selectedOperator
+      )}`;
       tempNumber = operate(firstOperand, secondOperand, selectedOperator);
       firstOperand = '';
       secondOperand = '';
