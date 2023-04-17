@@ -1,29 +1,26 @@
-let firstOperand = ''
-let secondOperand = ''
-let selectedOperator = ''
-let tempNumber = ''
-
+let firstOperand = '';
+let secondOperand = '';
+let selectedOperator = '';
+let tempNumber = '';
 
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
   number.addEventListener('click', clickButton);
-})
+});
 
 const operators = document.querySelectorAll('.operators');
 operators.forEach((op) => {
-  op.addEventListener('click', clickOperator)
-})
+  op.addEventListener('click', clickOperator);
+});
 
 const equalButton = document.querySelector('.equal');
 equalButton.addEventListener('click', clickEqual);
 
 const clear = document.querySelector('.clear');
-clear.addEventListener('click', clickClear)
+clear.addEventListener('click', clickClear);
 
 const upperDisplay = document.querySelector('#upper');
-const lowerDisplay = document.querySelector('#lower')
-
-
+const lowerDisplay = document.querySelector('#lower');
 
 function add(a, b) {
   return (a + b);
@@ -42,71 +39,70 @@ function divide(a, b) {
 }
 
 function operate(a, b, operator) {
-  let f = parseFloat(a)
-  let s = parseFloat(b)
-  if(operator == '+') {
+  const f = parseFloat(a);
+  const s = parseFloat(b);
+  if (operator == '+') {
     return add(f, s);
   }
 
-  if(operator === '-') {
+  if (operator === '-') {
     return subtract(f, s);
   }
 
-  if(operator === 'x') {
-     return multiply(f, s);
+  if (operator === 'x') {
+    return multiply(f, s);
   }
 
-  if(operator === '/') {
+  if (operator === '/') {
     return divide(f, s);
   }
 }
 
 function clickButton(e) {
   tempNumber += e.target.innerHTML;
-  lowerDisplay.innerHTML = `${tempNumber}`
+  lowerDisplay.innerHTML = `${tempNumber}`;
 }
 
 function clickOperator(e) {
-  lowerDisplay.innerHTML = ''
-  if(!firstOperand) {
+  lowerDisplay.innerHTML = '';
+  if (!firstOperand) {
     firstOperand = tempNumber;
     tempNumber = '';
-    selectedOperator = e.target.innerHTML; 
+    selectedOperator = e.target.innerHTML;
   } else {
-    secondOperand = tempNumber
+    secondOperand = tempNumber;
     if (secondOperand == '') {
       selectedOperator = e.target.innerHTML;
     }
-    tempNumber = ''    
+    tempNumber = '';
   }
-  upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
-  if(!isNaN(operate(firstOperand,secondOperand, selectedOperator)) ) {
-    lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
+  upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`;
+  if (!isNaN(operate(firstOperand, secondOperand, selectedOperator))) {
+    lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`;
     firstOperand = operate(firstOperand, secondOperand, selectedOperator);
     secondOperand = '';
     selectedOperator = e.target.innerHTML;
-    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`
-    lowerDisplay.innerHTML = ''
+    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand}`;
+    lowerDisplay.innerHTML = '';
   }
 }
 
-
 function clickEqual() {
-  if((firstOperand || firstOperand == '0') && selectedOperator) {
-    if(!firstOperand) {
+  if ((firstOperand || firstOperand == '0') && selectedOperator) {
+    if (!firstOperand) {
       firstOperand = tempNumber;
       tempNumber = '';
       selectedOperator = e.target.innerHTML;
     } else {
-      secondOperand = tempNumber
-      tempNumber = ''
+      secondOperand = tempNumber;
+      tempNumber = '';
     }
-  
-    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand} =`
-    if(!isNaN(operate(firstOperand,secondOperand, selectedOperator))) {
-      lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`
+
+    upperDisplay.innerHTML = `${firstOperand} ${selectedOperator} ${secondOperand} =`;
+    if (!isNaN(operate(firstOperand, secondOperand, selectedOperator))) {
+      lowerDisplay.innerHTML = `${operate(firstOperand, secondOperand, selectedOperator)}`;
       tempNumber = operate(firstOperand, secondOperand, selectedOperator);
-      firstOperand = ''
+      firstOperand = '';
       secondOperand = '';
       selectedOperator = '';
     }
@@ -114,11 +110,10 @@ function clickEqual() {
 }
 
 function clickClear() {
-  firstOperand = ''
-  secondOperand = ''
-  tempNumber = ''
-  selectedOperator = ''
-  upperDisplay.innerHTML = ''
-  lowerDisplay.innerHTML = ''
+  firstOperand = '';
+  secondOperand = '';
+  tempNumber = '';
+  selectedOperator = '';
+  upperDisplay.innerHTML = '';
+  lowerDisplay.innerHTML = '';
 }
-
